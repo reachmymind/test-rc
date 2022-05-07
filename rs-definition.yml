@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs
+  labels:
+    app: myapp2
+    type: no-end
+spec:
+  template:
+    metadata:
+      name: redis-container
+      labels:
+        type: test-container
+    spec:
+      containers:
+        - name: redis-container
+          image: redis
+  replicas: 3
+  selector:
+    matchLabels:
+      type: no-end
